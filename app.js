@@ -10,21 +10,25 @@ let con = db.connect();
 
 app.get("/", function(req, res) {
     res.send("Application working.");
+    console.log("LOG: Sent information.");
 });
 
 app.get("/getcourses", async function(req, res) {
     let courses = await getCourses(con);
     res.send(convertCourses(courses));
+    console.log("LOG: Sent information.");
 });
 
 app.get("/addcourse", async function(req, res) {
     let result = await addCourse(con, req.query);
     res.send(result);
+    console.log("LOG: Sent information.");
 });
 
 app.get("/deletecourse", async function(req, res) {
     let result = await deleteCourse(con, req.query.name);
     res.send(result);
+    console.log("LOG: Sent information.");
 });
 
 app.listen(3000, () => {
