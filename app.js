@@ -8,6 +8,10 @@ var convertCourses = require('./convert');
 
 let con = db.connect();
 
+app.get("/", function(req, res) {
+    res.send("Application working.");
+});
+
 app.get("/getcourses", async function(req, res) {
     let courses = await getCourses(con);
     res.send(convertCourses(courses));
