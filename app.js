@@ -31,6 +31,6 @@ app.get("/deletecourse", async function(req, res) {
     console.log("LOG: Sent information.");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("LOG: Started listening on port 3000.");
 });
