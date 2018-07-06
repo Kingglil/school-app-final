@@ -28,7 +28,7 @@ module.exports = function constructCourses(objs) {
             roomSecond: obj.RoomSecond,
             canJoin: obj.CanJoin,
             classes: convertStringToClasses(obj.Classes),
-            teacherID: obj.TeacherID,
+            teacherName: obj.TeacherName,
             subject: obj.Subject
         });
     }
