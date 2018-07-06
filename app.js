@@ -6,6 +6,7 @@ var addCourse = require('./db_addcourse');
 var deleteCourse = require('./db_deletecourse');
 var convertCourses = require('./convert');
 var register = require('./db_register');
+var login = require('./db_login');
 
 let con = db.connect();
 
@@ -44,6 +45,13 @@ app.get("/deletecourse", async function(req, res) {
 app.get("/register", async function(req, res) {
     EnableCORS(res);
     let result = await register(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.");
+});
+
+app.get("/login", async function(req, res) {
+    EnableCORS(res);
+    let result = await login(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
 });
