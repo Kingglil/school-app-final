@@ -4,7 +4,7 @@ var util = require('util');
 module.exports = async function(con, loginInfo) {
     con.query = util.promisify(con.query);
 
-    let sql = `SELECT Username, FullName, Subjects FROM teachers WHERE Username = '${loginInfo.username}' AND Password = '${loginInfo.password}'`;
+    let sql = `SELECT ID, Username, FullName, Subjects FROM teachers WHERE Username = '${loginInfo.username}' AND Password = '${loginInfo.password}'`;
     let result = await con.query(sql);
 
     if(result.length == 0) {
