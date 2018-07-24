@@ -1,11 +1,11 @@
 /getcourses - noparams </br>
 /getevents - noparams </br>
-/addcourse?name=&dayFirst=&daySecond=&timeStartFirst=&timeStartSecond=&timeEndFirst=&timeEndSecond=&roomFirst=&roomSecond=&classes=&subject=&peopleLimit=&description=&teacherID=
-/addevent?accountID=&name=&address=&time=&description=&peopleLimit=&date=
-/deletecourse?name=
-/register?username=&password=&fullname=
-/login?username=&password=
-/joincourse?id=&name=
-/joinevent?id=&name=
-/leavecourse?id=&name=
-/leaveevent?id=&name=
+/addcourse?name=&dayFirst=&daySecond=&timeStartFirst=&timeStartSecond=&timeEndFirst=&timeEndSecond=&roomFirst=&roomSecond=&classes=&subject=&peopleLimit=&description=&teacherID= </br>
+/addevent?accountID=&name=&address=&time=&description=&peopleLimit=&date= </br>
+/deletecourse?name= </br>
+/register?username=&password=&fullname= </br>
+/login?username=&password= </br>
+/joincourse?id=&name= </br>
+/joinevent?id=&name= </br>
+/leavecourse?id=&name= </br>
+/leaveevent?id=&name= </br>
