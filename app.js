@@ -2,11 +2,17 @@ var express = require('express');
 var app = express();
 var db = require('./db_conn');
 var getCourses = require('./db_getcourses');
+var getCourses = require('./db_getevents');
 var addCourse = require('./db_addcourse');
+var addEvent = require('./db_addevent');
 var deleteCourse = require('./db_deletecourse');
-var convertCourses = require('./convert');
+var convertor = require('./convert');
 var register = require('./db_register');
 var login = require('./db_login');
+var joinCourse = require('./db_joincourse');
+var joinEvent = require('./db_joinevent');
+var leaveCourse = require('./db_leavecourse');
+var leaveEvent = require('./db_leaveevent');
 
 let con = db.connect();
 
@@ -24,13 +30,27 @@ app.get("/", function(req, res) {
 app.get("/getcourses", async function(req, res) {
     EnableCORS(res);
     let courses = await getCourses(con);
-    res.send(convertCourses(courses));
+    res.send(convertor.constructCourses(courses));
+    console.log("LOG: Sent information.");
+});
+
+app.get("/getevents", async function(req, res) {
+    EnableCORS(res);
+    let events = await getEvents(con);
+    res.send(convertor.constructEvents(events));
     console.log("LOG: Sent information.");
 });
 
 app.get("/addcourse", async function(req, res) {
     EnableCORS(res);
     let result = await addCourse(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.");
+});
+
+app.get("/addevent", async function(req, res) {
+    EnableCORS(res);
+    let result = await addEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
 });
@@ -54,6 +74,34 @@ app.get("/login", async function(req, res) {
     let result = await login(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
+});
+
+app.get("/joincourse", async function(req, res) {
+    EnableCORS(res);
+    let result = await joinCourse(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.")
+});
+
+app.get("/joinevent", async function(req, res) {
+    EnableCORS(res);
+    let result = await joinEvent(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.")
+});
+
+app.get("/leavecourse", async function(req, res) {
+    EnableCORS(res);
+    let result = await leaveCourse(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.")
+});
+
+app.get("/leaveevent", async function(req, res) {
+    EnableCORS(res);
+    let result = await leaveEvent(con, req.query);
+    res.send(result);
+    console.log("LOG: Sent information.")
 });
 
 app.listen(process.env.PORT || 3000, () => {

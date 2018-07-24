@@ -2,13 +2,13 @@ var mysql = require('mysql');
 var util = require('util');
 
 module.exports = async function(con) {
-    let sql = "SELECT * FROM courses";
+    let sql = "SELECT * FROM events";
     let teacherSQL = "SELECT ID, FullName FROM accounts";
 
     con.query = util.promisify(con.query);
 
     let courses = await con.query(sql);
-    console.log("LOG: User fetched courses.");
+    console.log("LOG: User fetched events.");
     let teachers = await con.query(teacherSQL);
 
     let result = [];

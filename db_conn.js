@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 exports.connect = function () {
     var con = mysql.createConnection({
-        host: "sql7.freemysqlhosting.net",
-        user: "sql7246221",
-        password: "CcsM3uASrL",
-        database: "sql7246221"
+        host: "us-cdbr-iron-east-04.cleardb.net",
+        user: "b1ba993ebe3ccc",
+        password: "cff678d5",
+        database: "heroku_bce8628dfd233a9"
     });
 
     con.connect(function(err) {
