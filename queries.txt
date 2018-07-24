@@ -1,5 +1,5 @@
-/getcourses - noparams \n
-/getevents - noparams \n
+/getcourses - noparams </br>
+/getevents - noparams </br>
 /addcourse?name=&dayFirst=&daySecond=&timeStartFirst=&timeStartSecond=&timeEndFirst=&timeEndSecond=&roomFirst=&roomSecond=&classes=&subject=&peopleLimit=&description=&teacherID=
 /addevent?accountID=&name=&address=&time=&description=&peopleLimit=&date=
 /deletecourse?name=
