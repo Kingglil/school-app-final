@@ -14,6 +14,8 @@ var joinEvent = require('./db_joinevent');
 var leaveCourse = require('./db_leavecourse');
 var leaveEvent = require('./db_leaveevent');
 
+const fs = require("fs");
+
 let con = db.connect();
 
 function EnableCORS(res) {
@@ -23,7 +25,7 @@ function EnableCORS(res) {
 
 app.get("/", function(req, res) {
     EnableCORS(res);
-    res.send("Application working.");
+    res.send(fs.readFileSync('queries.txt').toString());
     console.log("LOG: Sent information.");
 });
 
