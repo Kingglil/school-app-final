@@ -4,7 +4,7 @@ var util = require('util');
 module.exports = async function(con, eventInfo) {
     con.query = util.promisify(con.query);
 
-    let sql = `SELECT * FROM accounts WHERE ID = ${eventInfo.id}`;
+    let sql = `SELECT * FROM accounts WHERE ID = ${eventInfo.accountID}`;
     let result = await con.query(sql);
 
     if(result.length == 0) {
@@ -22,7 +22,7 @@ module.exports = async function(con, eventInfo) {
     if(result[0].AccountLevel > 0) {
         
         sql = `INSERT INTO events ( Name, Address, Time, Description, CreatedBy, PeopleLimit, Date ) VALUES ` +
-            + `( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.id}', ` + 
+            + `( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.accountID}', ` + 
             + `'${eventInfo.peopleLimit}', '${eventInfo.date}' )`;
             
         return { code: 0 };

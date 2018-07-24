@@ -6,9 +6,9 @@ module.exports = async function(con, course) {
     con.query = util.promisify(con.query);
 
     let addSQL = `INSERT INTO courses(Name, DayFirst, DaySecond, TimeStartFirst, TimeStartSecond, TimeEndFirst, TimeEndSecond, RoomFirst, ` + 
-        `RoomSecond, CanJoin, Classes, Subject, PeopleLimit, Description, TeacherID) VALUES ('${course.name}', '${course.dayFirst}', '${course.daySecond}', ` +
+        `RoomSecond, Classes, Subject, PeopleLimit, Description, TeacherID) VALUES ('${course.name}', '${course.dayFirst}', '${course.daySecond}', ` +
         `'${course.timeStartFirst}', '${course.timeStartSecond}', '${course.timeEndFirst}', '${course.timeEndSecond}', '${course.roomFirst}', ` + 
-        `'${course.roomSecond}', '${course.canJoin}', '${course.classes}', '${course.subject}', '${course.peopleLimit}', '${course.description}', ` +
+        `'${course.roomSecond}', '${course.classes}', '${course.subject}', '${course.peopleLimit}', '${course.description}', ` +
         `'${course.teacherID}',)`;
 
     let timeStartFirstVal = parseInt(course.timeStartFirst.substr(0, 2)) * 60 + parseInt(course.timeStartFirst.substr(3, 2));

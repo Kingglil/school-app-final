@@ -1,1 +1,11 @@
-App working
+/getcourses - noparams
+/getevents - noparams
+/addcourse?name=&dayFirst=&daySecond=&timeStartFirst=&timeStartSecond=&timeEndFirst=&timeEndSecond=&roomFirst=&roomSecond=&classes=&subject=&peopleLimit=&description=&teacherID=
+/addevent?accountID=&name=&address=&time=&description=&peopleLimit=&date=
+/deletecourse?name=
+/register?username=&password=&fullname=
+/login?username=&password=
+/joincourse?id=&name=
+/joinevent?id=&name=
+/leavecourse?id=&name=
+/leaveevent?id=&name=
