@@ -25,6 +25,8 @@ module.exports = async function(con, eventInfo) {
             + `( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.accountID}', ` + 
             + `'${eventInfo.peopleLimit}', '${eventInfo.date}' )`;
 
+        console.log(sql);            
+
         await con.query(sql);
             
         return { code: 0 };
