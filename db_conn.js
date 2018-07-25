@@ -13,6 +13,8 @@ exports.checkConnection = function() {
     return connectionState;
 }
 
+exports.onConnectionLost = function() {};
+
 exports.connect = function () {
 
     con = mysql.createConnection(db_config);
@@ -32,6 +34,7 @@ exports.connect = function () {
             connectionState = false;
             console.log("ERROR: The connection to the datebase has been stopped.");
             console.log("LOG: Attempting to reconnect to the database.");
+            exports.onConnectionLost();
         }
     });   
 
