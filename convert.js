@@ -61,5 +61,7 @@ module.exports = {
                 peopleCount: countPeople(obj.People)
             });
         }
+
+        return events;
     }
 }
