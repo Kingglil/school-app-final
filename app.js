@@ -98,9 +98,11 @@ app.get("/register", async function(req, res) {
 app.get("/login", async function(req, res) {
     EnableCORS(res);
     if(!db.checkConnection()) {
+        console.log("test");
         res.send({ code: "DB_CONNECTION_LOST" } );
         return;
     } 
+    console.log("test2");
     let result = await login(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
