@@ -37,7 +37,7 @@ function attemptToReconnect() {
 
     let res = db.attemptToReconnect();
     if(res === null) {
-        console.log("LOG: test1");
+        console.log("LOG: test12");
         setTimeout(attemptToReconnect, 2000);
     } 
     else {
