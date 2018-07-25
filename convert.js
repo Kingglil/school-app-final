@@ -56,7 +56,7 @@ module.exports = {
                 timeStartFirst: obj.Time,
                 dayFirst: obj.Date,
                 description: obj.Description,
-                teacherName: obj.CreatedBy,
+                teacherName: obj.TeacherName,
                 peopleLimit: obj.PeopleLimit,
                 peopleCount: countPeople(obj.People)
             });

@@ -15,7 +15,7 @@ module.exports = async function(con) {
     let flag = false;
     for(let x = 0; x < courses.length; x++) {
         for(let y = 0; y < teachers.length; y++) {
-            if(courses[x].TeacherID == teachers[y].ID) {
+            if(courses[x].CreatedBy == teachers[y].ID) {
                 result[x] = courses[x];
                 result[x].TeacherName = teachers[y].FullName;
                 flag = true;
