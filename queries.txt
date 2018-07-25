@@ -3,6 +3,7 @@
 /addcourse?name=&dayFirst=&daySecond=&timeStartFirst=&timeStartSecond=&timeEndFirst=&timeEndSecond=&roomFirst=&roomSecond=&classes=&subject=&peopleLimit=&description=&teacherID= </br>
 /addevent?accountID=&name=&address=&time=&description=&peopleLimit=&date= </br>
 /deletecourse?name= </br>
+/deleteevent?name= </br>
 /register?username=&password=&fullname=&secretKey= </br>
 /login?username=&password= </br>
 /joincourse?id=&name= </br>

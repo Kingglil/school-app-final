@@ -6,6 +6,7 @@ var getEvents = require('./db_getevents');
 var addCourse = require('./db_addcourse');
 var addEvent = require('./db_addevent');
 var deleteCourse = require('./db_deletecourse');
+var deleteEvent = require('./db_deleteevent');
 var convertor = require('./convert');
 var register = require('./db_register');
 var login = require('./db_login');
@@ -84,6 +85,14 @@ app.get("/addevent", async function(req, res) {
 app.get("/deletecourse", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await deleteCourse(con, req.query.name);
+        res.send(result);
+        console.log("LOG: Sent information.");
+    }
+});
+
+app.get("/deleteevent", async function(req, res) {
+    if(EnableCORS(res)) {
+        let result = await deleteEvent(con, req.query.name);
         res.send(result);
         console.log("LOG: Sent information.");
     }
