@@ -20,6 +20,7 @@ exports.connect = function () {
         connectionState = true;
         if (err) {
             throw err;
+            return;
         }
 
         console.log("LOG: Successfully connected to the database.");
@@ -30,24 +31,24 @@ exports.connect = function () {
             connectionState = false;
             console.log("ERROR: The connection to the datebase has been stopped.");
             console.log("LOG: Attempting to reconnect to the database.");
-            attemptToReconnect();
         }
-    });
-
-    function attemptToReconnect() {
-        con = mysql.createConnection(db_config);
-
-        con.connect(function(err) {
-            if(err) {
-                console.log("ERROR: The server could not connect to the databse. Trying again in 2 seconds.");
-                setTimeout(attemptToReconnect, 2000);
-            }
-            else {
-                console.log("LOG: The server successfully reconnected to the databse.");
-                connectionState = true;
-            }
-        });
-    }
+    });   
 
     return con;
+}
+
+exports.attemptToReconnect = function() {
+    con = mysql.createConnection(db_config);
+
+    con.connect(function(err) {
+        if(err) {
+            console.log("ERROR: The server could not connect to the databse. Trying again in 2 seconds.");
+            return undefined;
+        }
+        else {
+            console.log("LOG: The server successfully reconnected to the databse.");
+            connectionState = true;
+            return con;
+        }
+    });
 }

@@ -17,24 +17,43 @@ var leaveEvent = require('./db_leaveevent');
 const fs = require("fs");
 
 let con = db.connect();
+let attemptingToReconnect = false;
 
 function EnableCORS(res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        if(!attemptingToReconnect) {
+            attemptToReconnect();
+        }
+        return false;
+    } 
+    return true;
+}
+
+function attemptToReconnect() {
+    attemptingToReconnect = true;
+
+    let res = db.attemptToReconnect();
+    if(res === undefined) {
+        setTimeout(attemptToReconnect, 2000);
+    } 
+    else {
+        con = res;
+        attemptingToReconnect = false;
+    }
 }
 
 app.get("/", function(req, res) {
-    EnableCORS(res);
-    res.send(fs.readFileSync('queries.txt').toString());
-    console.log("LOG: Sent information.");
+    if(EnableCORS(res)) {
+        res.send(fs.readFileSync('queries.txt').toString());
+        console.log("LOG: Sent information.");
+    }
 });
 
 app.get("/getcourses", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let courses = await getCourses(con);
     res.send(convertor.constructCourses(courses));
     console.log("LOG: Sent information.");
@@ -42,21 +61,13 @@ app.get("/getcourses", async function(req, res) {
 
 app.get("/getevents", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let events = await getEvents(con);
     res.send(convertor.constructEvents(events));
     console.log("LOG: Sent information.");
 });
 
 app.get("/addcourse", async function(req, res) {
-    EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
+    EnableCORS(res); 
     let result = await addCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -64,10 +75,6 @@ app.get("/addcourse", async function(req, res) {
 
 app.get("/addevent", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await addEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -75,10 +82,6 @@ app.get("/addevent", async function(req, res) {
 
 app.get("/deletecourse", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await deleteCourse(con, req.query.name);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -86,10 +89,6 @@ app.get("/deletecourse", async function(req, res) {
 
 app.get("/register", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await register(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -97,12 +96,6 @@ app.get("/register", async function(req, res) {
 
 app.get("/login", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        console.log("test");
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
-    console.log("test2");
     let result = await login(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -110,10 +103,6 @@ app.get("/login", async function(req, res) {
 
 app.get("/joincourse", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await joinCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
@@ -121,10 +110,6 @@ app.get("/joincourse", async function(req, res) {
 
 app.get("/joinevent", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await joinEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
@@ -132,21 +117,13 @@ app.get("/joinevent", async function(req, res) {
 
 app.get("/leavecourse", async function(req, res) {
     EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
     let result = await leaveCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
 });
 
 app.get("/leaveevent", async function(req, res) {
-    EnableCORS(res);
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return;
-    } 
+    EnableCORS(res); 
     let result = await leaveEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
