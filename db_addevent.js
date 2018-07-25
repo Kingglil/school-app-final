@@ -24,6 +24,8 @@ module.exports = async function(con, eventInfo) {
         sql = `INSERT INTO events ( Name, Address, Time, Description, CreatedBy, PeopleLimit, Date ) VALUES ` +
             + `( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.accountID}', ` + 
             + `'${eventInfo.peopleLimit}', '${eventInfo.date}' )`;
+
+        await con.query(sql);
             
         return { code: 0 };
     }
