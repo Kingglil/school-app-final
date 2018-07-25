@@ -26,10 +26,7 @@ db.onConnectionLost = function() {
 function EnableCORS(res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    if(!db.checkConnection()) {
-        res.send({ code: "DB_CONNECTION_LOST" } );
-        return false;
-    } 
+
     return true;
 }
 
