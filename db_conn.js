@@ -47,7 +47,7 @@ exports.attemptToReconnect = function() {
     con.connect(function(err) {
         if(err) {
             console.log("ERROR: The server could not connect to the databse. Trying again in 2 seconds.");
-            return undefined;
+            return null;
         }
         else {
             console.log("LOG: The server successfully reconnected to the databse.");

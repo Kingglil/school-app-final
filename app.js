@@ -36,7 +36,7 @@ function EnableCORS(res) {
 function attemptToReconnect() {
 
     let res = db.attemptToReconnect();
-    if(res === undefined) {
+    if(res === null) {
         console.log("LOG: test1");
         setTimeout(attemptToReconnect, 2000);
     } 
