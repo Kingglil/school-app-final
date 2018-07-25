@@ -21,7 +21,7 @@ module.exports = async function(con, eventInfo) {
 
     if(result[0].AccountLevel > 0) {
         
-        sql = `INSERT INTO events ( Name, Address, Time, Description, CreatedBy, PeopleLimit, Date ) VALUES ( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.accountID}', '${eventInfo.peopleLimit}', '${eventInfo.date}' )`;
+        sql = `INSERT INTO events ( Name, Address, Time, Description, CreatedBy, PeopleLimit, People, Date ) VALUES ( '${eventInfo.name}', '${eventInfo.address}', '${eventInfo.time}', '${eventInfo.description}', '${eventInfo.accountID}', '${eventInfo.peopleLimit}', '', '${eventInfo.date}' )`;
 
         console.log(sql);            
 
