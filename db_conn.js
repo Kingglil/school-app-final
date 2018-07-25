@@ -2,17 +2,18 @@ var mysql = require('mysql');
 
 var connectionState = false;
 
+var db_config = {
+    host: "us-cdbr-iron-east-04.cleardb.net",
+    user: "b1ba993ebe3ccc",
+    password: "cff678d5",
+    database: "heroku_bce8628dfd233a9"
+};
+
 exports.checkConnection = function() {
     return connectionState;
 }
 
 exports.connect = function () {
-    var db_config = {
-        host: "us-cdbr-iron-east-04.cleardb.net",
-        user: "b1ba993ebe3ccc",
-        password: "cff678d5",
-        database: "heroku_bce8628dfd233a9"
-    };
 
     con = mysql.createConnection(db_config);
 
