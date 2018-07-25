@@ -37,9 +37,11 @@ function attemptToReconnect() {
 
     let res = db.attemptToReconnect();
     if(res === undefined) {
+        console.log("LOG: test1");
         setTimeout(attemptToReconnect, 2000);
     } 
     else {
+        console.log("LOG: test2");
         con = res;
     }
 }
