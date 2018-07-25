@@ -31,6 +31,10 @@ app.get("/", function(req, res) {
 
 app.get("/getcourses", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let courses = await getCourses(con);
     res.send(convertor.constructCourses(courses));
     console.log("LOG: Sent information.");
@@ -38,6 +42,10 @@ app.get("/getcourses", async function(req, res) {
 
 app.get("/getevents", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let events = await getEvents(con);
     res.send(convertor.constructEvents(events));
     console.log("LOG: Sent information.");
@@ -45,6 +53,10 @@ app.get("/getevents", async function(req, res) {
 
 app.get("/addcourse", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await addCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -52,6 +64,10 @@ app.get("/addcourse", async function(req, res) {
 
 app.get("/addevent", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await addEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -59,6 +75,10 @@ app.get("/addevent", async function(req, res) {
 
 app.get("/deletecourse", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await deleteCourse(con, req.query.name);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -66,6 +86,10 @@ app.get("/deletecourse", async function(req, res) {
 
 app.get("/register", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await register(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -73,6 +97,10 @@ app.get("/register", async function(req, res) {
 
 app.get("/login", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await login(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.");
@@ -80,6 +108,10 @@ app.get("/login", async function(req, res) {
 
 app.get("/joincourse", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await joinCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
@@ -87,6 +119,10 @@ app.get("/joincourse", async function(req, res) {
 
 app.get("/joinevent", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await joinEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
@@ -94,6 +130,10 @@ app.get("/joinevent", async function(req, res) {
 
 app.get("/leavecourse", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await leaveCourse(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
@@ -101,6 +141,10 @@ app.get("/leavecourse", async function(req, res) {
 
 app.get("/leaveevent", async function(req, res) {
     EnableCORS(res);
+    if(!db.checkConnection()) {
+        res.send({ code: "DB_CONNECTION_LOST" } );
+        return;
+    } 
     let result = await leaveEvent(con, req.query);
     res.send(result);
     console.log("LOG: Sent information.")
