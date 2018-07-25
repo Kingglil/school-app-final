@@ -9,12 +9,6 @@ var db_config = {
     database: "heroku_bce8628dfd233a9"
 };
 
-exports.checkConnection = function() {
-    return connectionState;
-}
-
-exports.onConnectionLost = function() {};
-
 exports.connect = function () {
 
     con = mysql.createConnection(db_config);
@@ -34,25 +28,12 @@ exports.connect = function () {
             connectionState = false;
             console.log("ERROR: The connection to the datebase has been stopped.");
             console.log("LOG: Attempting to reconnect to the database.");
-            exports.onConnectionLost();
         }
     });   
 
+    setInterval(function() {
+        con.query("SELECT 1");
+    }, 5000);
+
     return con;
-}
-
-exports.attemptToReconnect = function() {
-    con = mysql.createConnection(db_config);
-
-    con.connect(function(err) {
-        if(err) {
-            console.log("ERROR: The server could not connect to the databse. Trying again in 2 seconds.");
-            return null;
-        }
-        else {
-            console.log("LOG: The server successfully reconnected to the databse.");
-            connectionState = true;
-            return con;
-        }
-    });
 }
