@@ -14,6 +14,7 @@ var joinCourse = require('./db_joincourse');
 var joinEvent = require('./db_joinevent');
 var leaveCourse = require('./db_leavecourse');
 var leaveEvent = require('./db_leaveevent');
+var promoteaccount = require('./db_promoteaccount');
 
 const fs = require("fs");
 
@@ -118,7 +119,7 @@ app.get("/joincourse", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await joinCourse(con, req.query);
         res.send(result);
-        console.log("LOG: Sent information.")
+        console.log("LOG: Sent information.");
     }
 });
 
@@ -126,7 +127,7 @@ app.get("/joinevent", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await joinEvent(con, req.query);
         res.send(result);
-        console.log("LOG: Sent information.")
+        console.log("LOG: Sent information.");
     }
 });
 
@@ -134,7 +135,7 @@ app.get("/leavecourse", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await leaveCourse(con, req.query);
         res.send(result);
-        console.log("LOG: Sent information.")
+        console.log("LOG: Sent information.");
     }
 });
 
@@ -142,7 +143,15 @@ app.get("/leaveevent", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await leaveEvent(con, req.query);
         res.send(result);
-        console.log("LOG: Sent information.")
+        console.log("LOG: Sent information.");
+    }
+});
+
+app.get("/promoteaccount", async function(req, res) {
+    if(EnableCORS(res)) {
+        let result = await promoteaccount(con, req.query);
+        res.send(result);
+        console.log("LOG: Sent information.");
     }
 });
 

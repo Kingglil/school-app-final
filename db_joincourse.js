@@ -6,7 +6,7 @@ module.exports = async function(con, userInfo) {
 
     let testSql = `SELECT * FROM courses WHERE Name = ${userInfo.name}`;
     let updateSql = `UPDATE courses SET People = 'CONCAT(People, ';${userInfo.id}')' WHERE Name = '${userInfo.name}')`;
-
+ 
     let res = await con.query(testSql);
     if(res.length == 0) {
         console.log("WARNING: A user tried to join a course but failed.");
