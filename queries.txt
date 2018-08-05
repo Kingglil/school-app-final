@@ -11,3 +11,5 @@
 /leavecourse?id=&name= </br>
 /leaveevent?id=&name= </br>
 /promoteaccount?id=&accountID=&level=
+/getcreatedcourses?id=
+/getcreatedevents?id=

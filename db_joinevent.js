@@ -5,7 +5,7 @@ module.exports = async function(con, userInfo) {
     con.query = util.promisify(con.query);
 
     let testSql = `SELECT * FROM events WHERE Name = ${userInfo.name}`;
-    let updateSql = `UPDATE events SET People = 'CONCAT(People, ';${userInfo.id}')' WHERE Name = '${userInfo.name}')`;
+    let updateSql = `UPDATE events SET People = 'CONCAT(People, ';${userInfo.id}')' WHERE Name = '${userInfo.name}')`;1
 
     let res = await con.query(testSql);
     if(res.length == 0) {

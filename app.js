@@ -15,6 +15,8 @@ var joinEvent = require('./db_joinevent');
 var leaveCourse = require('./db_leavecourse');
 var leaveEvent = require('./db_leaveevent');
 var promoteaccount = require('./db_promoteaccount');
+var getcreatedcourses = require('./db_getcreatedcourses');
+var getcreatedevents = require('./db_getcreatedevents');
 
 const fs = require("fs");
 
@@ -150,6 +152,22 @@ app.get("/leaveevent", async function(req, res) {
 app.get("/promoteaccount", async function(req, res) {
     if(EnableCORS(res)) {
         let result = await promoteaccount(con, req.query);
+        res.send(result);
+        console.log("LOG: Sent information.");
+    }
+});
+
+app.get("/getcreatedcourses", async function(req, res) {
+    if(EnableCORS(res)) {
+        let result = await getcreatedcourses(con, req.query);
+        res.send(result);
+        console.log("LOG: Sent information.");
+    }
+});
+
+app.get("/getcreatedevents", async function(req, res) {
+    if(EnableCORS(res)) {
+        let result = await getcreatedevents(con, req.query);
         res.send(result);
         console.log("LOG: Sent information.");
     }
